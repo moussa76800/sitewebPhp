@@ -45,10 +45,7 @@ class LivresControllers
         $nomImageAjoute = $this->ajoutImage($file, $repertoire);
         $this->livreManager->ajoutLivreBd($_POST['title'], $_POST['author'], $_POST['numbersOfPages'], $_POST['price'], $nomImageAjoute);
 
-        $_SESSION['alert'] = [
-            "type" => "sucess",
-            "msg" => "Ajout Réalisé"
-        ];
+       
 
         header('Location: ' . URL . "livres");
     }
@@ -85,10 +82,7 @@ class LivresControllers
         unlink("public/images/livres/" . $nomImage);
         $this->livreManager->suppressionLivreBD($id);
 
-        $_SESSION['alert'] = [
-            "type" => "sucess",
-            "msg" => "Suppression Réalisé"
-        ];
+        
         header('Location: ' . URL . "livres");
     }
 
@@ -113,8 +107,8 @@ class LivresControllers
         } else {
             $nomImageAjoute = $imageActuelle;
         }
-        $this->livreManager->modificationLivreBD($_POST['identifiant'], $_POST['title'], $_POST['author'], $_POST['numbersOfPages'], $_POST['price'], $nomImageAjoute);
+        $this->livreManager->modificationLivreBD($_POST['identifiant'],$_POST['title'],$_POST['author'],$_POST['numbersOfPages'],$_POST['price'],$nomImageAjoute);
         
-        header('Location: ' . URL . "livres");
+        header('Location: '. URL . "livres");
     }
 }
